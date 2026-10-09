@@ -6,6 +6,7 @@ export WINENET_VERSION="0.0.0"
 export WINENET_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/$WINENET_NAME"
 export WINENET_PREFIX="$WINENET_DATA_DIR/prefix"
 export WINENET_SCRIPT_EXPECTED_DIR="$HOME/.local/bin"
+export WINENET_SCRIPT_EXPECTED_FILE="$WINENET_SCRIPT_EXPECTED_DIR/$WINENET_NAME"
 export WINENET_MSBUILD_TARGETS_FILE="$WINENET_DATA_DIR/msbuild_targets.xml"
 
 #make script sourceable without all the internal things
@@ -29,46 +30,24 @@ DOTNET_INSTALL_SCRIPT_URL="https://dot.net/v1/dotnet-install.sh"
 export WINEPREFIX="$WINENET_PREFIX"
 #------HELPERS------#
 get_user_bool() {
-  local input=""
-  local char=""
+    local prompt="${1:-Continue?}"
+    local response
 
-  while true; do
-    IFS= read -s -n 1 char
-
-    if [[ -z "$char" ]]; then
-      local lower_input="${input,,}"
-      if [[ "$lower_input" == "y" || "$lower_input" == "yes" ]]; then
-        echo "" >&2
-        return 0
-      elif [[ "$lower_input" == "n" || "$lower_input" == "no" ]]; then
-        echo "" >&2
-        return 1
-      else
-        local len=${#input}
-        for (( i=0; i<len; i++ )); do
-          printf "\b \b" >&2
-        done
-        input=""
-        continue
-      fi
-    fi
-
-    if [[ "$char" == $'\x7f' || "$char" == $'\x08' ]]; then
-      if [[ ${#input} -gt 0 ]]; then
-        input="${input%?}"
-        printf "\b \b" >&2
-      fi
-      continue
-    fi
-
-    local test_input="${input}${char}"
-    local lower_test="${test_input,,}"
-
-    if [[ "$lower_test" == "y" || "$lower_test" == "ye" || "$lower_test" == "yes" || "$lower_test" == "n" || "$lower_test" == "no" ]]; then
-      input="$test_input"
-      printf "%s" "$char" >&2
-    fi
-  done
+    while true; do
+        read -r -p "$prompt [Y/n]: " response
+        response="${response:-Y}"
+        case "$response" in
+            [yY]|[yY][eE][sS])
+                return 0
+                ;;
+            [nN]|[nN][oO])
+                return 1
+                ;;
+            *)
+                echo "Invalid response. Please enter 'y' or 'n'." >&2
+                ;;
+        esac
+    done
 }
 run_checks() {
   if [[ ! (-d "$WINENET_PREFIX" && -d "$WINENET_DATA_DIR") ]]; then
@@ -81,8 +60,7 @@ run_checks() {
 
 #------SETUP------#
 install_dotnet() {
-  printf "Would you like to install dotnet from '%s'? Y/n " "$DOTNET_INSTALL_SCRIPT_URL"
-  if get_user_bool; then
+  if get_user_bool "Would you like to install dotnet from '$DOTNET_INSTALL_SCRIPT_URL'?"; then
     printf "\n"
     source <(curl -fsSL -A "$WINENET_NAME" "$DOTNET_INSTALL_SCRIPT_URL") || return 1
   else

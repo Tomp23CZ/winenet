@@ -9,7 +9,7 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
     <RunCommand>winenet</RunCommand>
     <RunArguments>__msbuild-run "$(TargetDir)$(AssemblyName).exe"</RunArguments>
   </PropertyGroup>
