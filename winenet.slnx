@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/Templates/">
+    <Project Path="Templates/Base/Base.csproj" />
+  </Folder>
+</Solution>

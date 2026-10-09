@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "CallsignFOX5",
+  "identity": "Winenet.Templates.Base",
+  "name": "Winenet Console",
+  "shortName": "winenet-console",
+  "description": "Windows desktop runtime targeting dotnet console application",
+  "classifications": [
+    "Winenet",
+    "Console",
+    "Windows Desktop",
+    "Windows"
+  ],
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "groupIdentity": "Winenet.Templates",
+  "precedence": 10,
+  "preferNameDirectory": true,
+  "sourceName": "Base"
+}
