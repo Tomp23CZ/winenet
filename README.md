@@ -26,7 +26,7 @@ WINENET requires the following tools to be installed on your system:
 
 Run the installer:
 ```
-curl -fsSL https://raw.githubusercontent.com/Tomp23CZ/winenet/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Tomp23CZ/winenet/master/install.sh | bash
 ```
 The installer will:
 
