@@ -15,8 +15,8 @@
     "language": "C#",
     "type": "project"
   },
-  "groupIdentity": "Winenet.Templates",
-  "precedence": 9,
+  "groupIdentity": "Winenet.Templates.WinForms",
+  "precedence": 10,
   "preferNameDirectory": true,
   "sourceName": "WinForms"
 }

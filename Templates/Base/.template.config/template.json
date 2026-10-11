@@ -15,7 +15,7 @@
     "language": "C#",
     "type": "project"
   },
-  "groupIdentity": "Winenet.Templates",
+  "groupIdentity": "Winenet.Templates.Base",
   "precedence": 10,
   "preferNameDirectory": true,
   "sourceName": "Base"
