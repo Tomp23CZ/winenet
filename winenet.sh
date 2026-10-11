@@ -28,26 +28,6 @@ WINENET_TMP_DIR="$(mktemp -d -t winenet.XXXXXX)" || exit 1
 trap 'rm -rf -- "$WINENET_TMP_DIR"' EXIT
 export WINEPREFIX="$WINENET_PREFIX"
 #------HELPERS------#
-get_user_bool() {
-    local prompt="${1:-Continue?}"
-    local response
-
-    while true; do
-        read -r -p "$prompt [Y/n]: " response
-        response="${response:-Y}"
-        case "$response" in
-            [yY]|[yY][eE][sS])
-                return 0
-                ;;
-            [nN]|[nN][oO])
-                return 1
-                ;;
-            *)
-                echo "Invalid response. Please enter 'y' or 'n'." >&2
-                ;;
-        esac
-    done
-}
 run_checks() {
   if [[ ! (-d "$WINENET_PREFIX" && -d "$WINENET_DATA_DIR") ]]; then
     setup || return 1

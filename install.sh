@@ -12,18 +12,13 @@ get_user_bool() {
     local response
 
     while true; do
-        read -r -p "$prompt [Y/n]: " response
+        read -r -p "$prompt [Y/n]: " response </dev/tty || return 1
         response="${response:-Y}"
+
         case "$response" in
-            [yY]|[yY][eE][sS])
-                return 0
-                ;;
-            [nN]|[nN][oO])
-                return 1
-                ;;
-            *)
-                echo "Invalid response. Please enter 'y' or 'n'." >&2
-                ;;
+            [yY]|[yY][eE][sS]) return 0 ;;
+            [nN]|[nN][oO]) return 1 ;;
+            *) printf '%s\n' "Invalid response. Please enter 'y' or 'n'." >&2 ;;
         esac
     done
 }
@@ -31,7 +26,7 @@ get_user_bool() {
 install_templates() {
   rm -rf "$WINENET_DATA_DIR/Templates"
   mkdir -p "$WINENET_DATA_DIR/Templates"
-  cp -r "$TMP_DIR/Templates" "$WINENET_DATA_DIR/Templates"
+  cp -r "$TMP_DIR/Templates" "$WINENET_DATA_DIR"
   local dir
   for dir in "$WINENET_DATA_DIR/Templates"/*/; do
     [[ -f "$dir/.template.config/template.json" ]] || continue
