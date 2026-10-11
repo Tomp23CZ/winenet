@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Templates/">
     <Project Path="Templates/Base/Base.csproj" />
+    <Project Path="Templates/WinForms/WinForms.csproj" />
   </Folder>
 </Solution>
