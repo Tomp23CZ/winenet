@@ -1,0 +1,17 @@
+﻿<Project>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <RunCommand>winenet</RunCommand>
+    <RunArguments>__msbuild-run "$(TargetDir)$(AssemblyName).exe"</RunArguments>
+  </PropertyGroup>
+</Project>

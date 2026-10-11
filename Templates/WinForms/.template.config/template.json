@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "CallsignFOX5",
+  "identity": "Winenet.Templates.WinForms",
+  "name": "Winenet Windows Forms",
+  "shortName": "winenet-winforms",
+  "description": "Windows desktop runtime targeting Windows Forms application",
+  "classifications": [
+    "Winenet",
+    "WinForms",
+    "Windows Desktop",
+    "Windows"
+  ],
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "groupIdentity": "Winenet.Templates",
+  "precedence": 9,
+  "preferNameDirectory": true,
+  "sourceName": "WinForms"
+}
