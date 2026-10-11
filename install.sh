@@ -42,8 +42,7 @@ git clone "$REPO_URL" "$TMP_DIR"
 
 source "$WINENET_FILE_PATH"
 mkdir -p "$WINENET_SCRIPT_EXPECTED_DIR"
-cp "$WINENET_FILE_PATH" "$WINENET_SCRIPT_EXPECTED_FILE"
-chmod +x "$WINENET_SCRIPT_EXPECTED_FILE"
+install -m 755 "$WINENET_FILE_PATH" "$WINENET_SCRIPT_EXPECTED_FILE"
 printf "%s\n" "Script installed"
 
 printf "%s\n" "Setting up $WINENET_NAME"
