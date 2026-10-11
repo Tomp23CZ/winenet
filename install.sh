@@ -30,7 +30,7 @@ install_templates() {
   local dir
   for dir in "$WINENET_DATA_DIR/Templates"/*/; do
     [[ -f "$dir/.template.config/template.json" ]] || continue
-    dotnet new install "$dir"
+    dotnet new install "$dir" --force
   done
   printf "%s\n" "Templates installed"
 }
