@@ -22,8 +22,6 @@ WINENET requires the following tools to be installed on your system:
 - `wine`
 - `.NET SDK`
 
-The installer can optionally try to install .NET using Microsoft's own installation script if `dotnet` is not found.
-
 ## Installation
 
 Run the installer:

@@ -26,7 +26,6 @@ WINENET_MSBUILD_DEFAULT_TARGETS_IMPLEMENTATION="
 "
 WINENET_TMP_DIR="$(mktemp -d -t winenet.XXXXXX)" || exit 1
 trap 'rm -rf -- "$WINENET_TMP_DIR"' EXIT
-DOTNET_INSTALL_SCRIPT_URL="https://dot.net/v1/dotnet-install.sh"
 export WINEPREFIX="$WINENET_PREFIX"
 #------HELPERS------#
 get_user_bool() {
@@ -59,22 +58,12 @@ run_checks() {
 }
 
 #------SETUP------#
-install_dotnet() {
-  if get_user_bool "Would you like to install dotnet from '$DOTNET_INSTALL_SCRIPT_URL'?"; then
-    printf "\n"
-    source <(curl -fsSL -A "$WINENET_NAME" "$DOTNET_INSTALL_SCRIPT_URL") || return 1
-  else
-    printf "\n"
-    return 1
-  fi
-}
-
 ensure_dotnet() {
   if dotnet --info >/dev/null 2>&1; then
     return 0
   fi
   printf "Dotnet is not installed or missing from \$PATH\n"
-  install_dotnet
+  return 1
 }
 
 get_dotnet_runtime_installer_urls() {
