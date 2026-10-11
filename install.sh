@@ -29,8 +29,10 @@ get_user_bool() {
 }
 
 install_templates() {
+  mkdir -p "$WINENET_DATA_DIR/Templates"
+  cp -r "$TMP_DIR/Templates/" "$WINENET_DATA_DIR/Templates/"
   local dir
-  for dir in "$TMP_DIR/Templates"/*/; do
+  for dir in "$WINENET_DATA_DIR/Templates"/*/; do
     [[ -f "$dir/.template.config/template.json" ]] || continue
     dotnet new install "$dir"
   done
