@@ -26,7 +26,7 @@ get_user_bool() {
 install_templates() {
   rm -rf "$WINENET_DATA_DIR/Templates"
   mkdir -p "$WINENET_DATA_DIR/Templates"
-  cp -r "$TMP_DIR/Templates" "$WINENET_DATA_DIR"
+  cp -r "$TMP_DIR/Templates/." "$WINENET_DATA_DIR/Templates"
   local dir
   for dir in "$WINENET_DATA_DIR/Templates"/*/; do
     [[ -f "$dir/.template.config/template.json" ]] || continue
