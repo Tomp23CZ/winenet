@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #---META---
 set -e
-REPO_URL="THERE IS NO REPO URL YET"
+REPO_URL="https://github.com/Tomp23CZ/winenet"
 TMP_DIR="$(mktemp -d -t winenet.installer.XXXXXX)" || exit 1
 trap 'rm -rf "$TMP_DIR"' EXIT
 WINENET_FILE_PATH="$TMP_DIR/winenet.sh"
